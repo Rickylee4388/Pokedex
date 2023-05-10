@@ -3,48 +3,49 @@ let Pokemon = "bulbasaur";
 
 async function loadPokemon() {
 
-  if (document.getElementById("inputPokemon").value == "") {
-    let url = `https://pokeapi.co/api/v2/pokemon/${Pokemon}`;
-    let response = await fetch(url);
-    console.log("Pokemon is", Pokemon);
-    currentPokemon = await response.json();
-    renderPokemonInfo();
-  } else {
-    let Pokemon = document.getElementById("inputPokemon").value;
-    let url = `https://pokeapi.co/api/v2/pokemon/${Pokemon}`;
-    let response = await fetch(url);
-    console.log("Pokemon is", Pokemon);
-    currentPokemon = await response.json();
-    renderPokemonInfo();
-  }
   for (let i = 1; i < 152; i++) {
     let number = i;
-
     let url = `https://pokeapi.co/api/v2/pokemon/${i}`
     let response = await fetch(url);
     currentPokemon = await response.json();
     let name = currentPokemon["forms"][0]["name"];
-
+    let pokImg = currentPokemon["sprites"]["other"]["dream_world"]["front_default"];
     document.getElementById('pokemonList').innerHTML+=
     /*html*/`
-      <div id="#00${number}" class="pokemonID" onclick=loadPokemon(i)>${name}</div>
+      <div id="#00${number}" class="pokemonID" onclick='openPokeCard(${i})'>
+      <b>${capitalizeFirstLetter(name)}</b>
+    <img src="${pokImg}" alt="">
+    </div>
     `
   }
 
 }
+async function openPokeCard(i){
+  
+  let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+  let response = await fetch(url);
+  currentPokemon = await response.json();
+  renderPokemonInfo();
+  document.getElementById('pokeCard').classList.remove('d-none');
+  document.getElementById('pokedexAll').classList.add('d-none');
+  
+}
+function closePokeCard(){
+  document.getElementById('pokeCard').classList.add('d-none');
+  document.getElementById('pokedexAll').classList.remove('d-none');
+}
 
 function renderPokemonInfo() {
-  let pokImg =
-    currentPokemon["sprites"]["other"]["dream_world"]["front_default"];
-  let pokemonName = currentPokemon["name"];
-  document.getElementById("pokemonName").innerHTML =
-    capitalizeFirstLetter(pokemonName);
+  let pokImg = currentPokemon["sprites"]["other"]["home"]["front_default"];
+  let pokemonName = currentPokemon["name"]; 
+  document.getElementById("pokemonName").innerHTML = capitalizeFirstLetter(pokemonName);
   document.getElementById("pokemonImage").src = pokImg;
-
+  let name = currentPokemon["forms"][0]["name"];
   let pokemonabilities = currentPokemon["abilities"];
   let species = currentPokemon["types"]["0"]["type"]["name"];
   let height = currentPokemon["height"];
   let weight = currentPokemon["weight"];
+  console.log("Pokemon is", name);
   document.getElementById("aboutTable").innerHTML = ``;
   document.getElementById("aboutTable").innerHTML += /*html*/ `
             <tr>
@@ -63,7 +64,7 @@ function renderPokemonInfo() {
                 <td class="tdAbout1">Abilities</td>
                 <td id="abilities">
                     ${pokemonabilities[0]["ability"]["name"]}<br>
-                    ${pokemonabilities[1]["ability"]["name"]}
+                    
                 </td>
             </tr>
     `;
