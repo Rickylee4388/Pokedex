@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+
+}
+.content{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pokeCard{
+    background-color: rgb(255, 0, 0);
+    border: 1px solid grey;
+    border-radius: 40px;
+    min-width: 350px;
+    min-height: 90%;
+}
+.pokeCardInfo {
+    display: block;
+    min-height: 40vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    font-family: 'Open Sans', sans-serif
+}
+.infoContainer {
+    display: block;
+    background-color: white;
+    height: 50vh;
+    
+    border-radius: 40px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.pokemonImageDiv {
+    display: flex;
+    justify-content: center;
+}
+.pokemonImageDiv img {
+    margin-top: -120px;
+    height: 200px;
+}
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.aboutDiv{
+    margin-left: 40px;
+}
+.tdAbout1{
+    width: 100px;
+}
+tr{
+    height: 26px;
+}
+td{
+    width: 40%;
+}
+.arrowHeart{
+    display: flex;
+    justify-content: space-between;
+    min-width: 350px;
+    height: 30px;
+}
+.arrow svg{
+    height: 40px;
+    width: 40px;
+    fill: white;    
+}
+.heart svg{
+    height: 40px;
+    width: 40px;
+    fill: white;  
+}
+.d-none{
+    display: none;
+}
+.pokemonList{
+    display: flex;
+    flex-wrap: wrap;
+    height: 90vh;
+
+}
+.pokemonID{
+    height: 200px;
+    width: 150px;
+    background-color: aqua;
+    border: 1px solid grey;
+    margin: 5px;
+}
