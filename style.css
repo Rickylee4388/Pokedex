@@ -3,19 +3,22 @@ body {
     font-family: 'Open Sans', sans-serif;
 
 }
-.content{
+
+.content {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.pokeCard{
+
+.pokeCard {
     background-color: rgb(255, 0, 0);
     border: 1px solid grey;
     border-radius: 40px;
     min-width: 350px;
     min-height: 90%;
 }
+
 .pokeCardInfo {
     display: block;
     min-height: 40vh;
@@ -28,24 +31,28 @@ body {
     padding-bottom: 24px;
     font-family: 'Open Sans', sans-serif
 }
+
 .infoContainer {
     display: block;
     background-color: white;
     height: 50vh;
-    
+
     border-radius: 40px;
     margin-bottom: 3px;
     margin-left: 3px;
     margin-right: 3px;
 }
+
 .pokemonImageDiv {
     display: flex;
     justify-content: center;
 }
+
 .pokemonImageDiv img {
     margin-top: -120px;
     height: 200px;
 }
+
 .tabs {
     display: flex;
     justify-content: space-between;
@@ -54,44 +61,54 @@ body {
     margin-left: 40px;
     margin-right: 40px;
 }
-.aboutDiv{
+
+.aboutDiv {
     margin-left: 40px;
 }
-.tdAbout1{
+
+.tdAbout1 {
     width: 100px;
 }
-tr{
+
+tr {
     height: 26px;
 }
-td{
+
+td {
     width: 40%;
 }
-.arrowHeart{
+
+.arrowHeart {
     display: flex;
     justify-content: space-between;
     min-width: 350px;
     height: 30px;
 }
-.arrow svg{
+
+.arrow svg {
     height: 40px;
     width: 40px;
-    fill: white;    
+    fill: white;
 }
-.heart svg{
+
+.heart svg {
     height: 40px;
     width: 40px;
-    fill: white;  
+    fill: white;
 }
-.d-none{
+
+.d-none {
     display: none;
 }
-.pokemonList{
+
+.pokemonList {
     display: flex;
     flex-wrap: wrap;
     height: 90vh;
 
 }
-.pokemonID{
+
+.pokemonID {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -103,14 +120,189 @@ td{
     margin: 5px;
     padding-top: 20px;
 }
-.close{
+
+.close {
     display: flex;
     justify-content: flex-end;
     cursor: pointer;
 }
-.heart{
+
+.heart {
     cursor: pointer;
 }
-.pokemonID img{
+
+.pokemonID img {
     height: 100px;
+    width: 100px;
 }
+
+.d-flex {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.type {
+
+    background-color: rgba(187, 255, 253, 0.716);
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    height: 30px;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+/* Background Color by type */
+.grass {
+    background-color: #58ebc1;
+}
+
+.grass-light {
+    background-color: #a3f6de;
+}
+
+.fire {
+    background-color: #F08030;
+}
+
+.fire-light {
+    background-color: #fdb079;
+}
+
+.water {
+    background-color: #6890F0;
+}
+
+.water-light {
+    background-color: #a5bdf7;
+}
+
+.bug {
+    background-color: #A8B820;
+}
+
+.bug-light {
+    background-color: #d8e27f;
+}
+
+.normal {
+    background-color: #A8A878;
+}
+
+.normal-light {
+    background-color: #cdcdbd;
+}
+
+.poison {
+    background-color: #A040A0;
+}
+
+.poison-light {
+    background-color: #cb98cb;
+}
+
+.electric {
+    background-color: #F8D030;
+}
+
+.electric-light {
+    background-color: #ebdca2;
+}
+
+.ground {
+    background-color: #E0C068;
+}
+
+.ground-light {
+    background-color: #e2d9be;
+}
+
+.fairy {
+    background-color: #F0B6BC;
+}
+
+.fairy-light {
+    background-color: #ebdcde;
+}
+
+.flying {
+    background-color: #A890F0;
+}
+
+.flying-light {
+    background-color: #c9bfe8;
+}
+
+.fightning {
+    background-color: #C03028;
+}
+
+.fightning-light {
+    background-color: #d38c89;
+}
+
+.psychic {
+    background-color: #F85888;
+}
+
+.psychic-light {
+    background-color: #f9abc2;
+}
+
+.rock {
+    background-color: #B8A038;
+}
+
+.rock-light {
+    background-color: #dad0a4;
+}
+
+.ghost {
+    background-color: #705898;
+}
+
+.ghost-light {
+    background-color: #bdb9c4;
+}
+
+.ice {
+    background-color: #57ffff;
+}
+
+.ice-light {
+    background-color: #dcdcdc;
+}
+
+.dragon {
+    background-color: #7038F8;
+}
+
+.dragon-light {
+    background-color: #b293fa;
+}
+
+.dark {
+    background-color: #705848;
+}
+
+.dark-light {
+    background-color: #c39c82;
+}
+
+.steel {
+    background-color: #B8B8D0;
+}
+
+.steel-light {
+    background-color: #e9f7ff;
+}
+
+/*END Background Color by type */

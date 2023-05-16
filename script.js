@@ -2,43 +2,49 @@ let currentPokemon;
 let Pokemon = "bulbasaur";
 
 async function loadPokemon() {
-
   for (let i = 1; i < 152; i++) {
     let number = i;
-    let url = `https://pokeapi.co/api/v2/pokemon/${i}`
+    let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
     let name = currentPokemon["forms"][0]["name"];
-    let pokImg = currentPokemon["sprites"]["other"]["dream_world"]["front_default"];
-    document.getElementById('pokemonList').innerHTML+=
-    /*html*/`
-      <div id="#00${number}" class="pokemonID" onclick='openPokeCard(${i})'>
-      <b>${capitalizeFirstLetter(name)}</b>
-    <img src="${pokImg}" alt="">
-    </div>
-    `
-  }
+    let pokImg =
+      currentPokemon["sprites"]["other"]["dream_world"]["front_default"];
+    
+    let pokType = currentPokemon["types"]["0"]["type"]["name"];
+    
+    document.getElementById("pokemonList").innerHTML += /*html*/ `
+      <div id="#00${number}" class="pokemonID ${pokType} " onclick='openPokeCard(${i})'>
+        <b>${capitalizeFirstLetter(name)}</b>
+        <div class="d-flex mt20">        
+          <img src="${pokImg}" alt="">
+          <div id="type" class="type ${pokType}-light">${pokType} </div>
+      
 
+        </div>
+      </div>
+
+    `;
+  }
 }
-async function openPokeCard(i){
-  
+async function openPokeCard(i) {
   let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
   let response = await fetch(url);
   currentPokemon = await response.json();
   renderPokemonInfo();
-  document.getElementById('pokeCard').classList.remove('d-none');
-  document.getElementById('pokedexAll').classList.add('d-none');
-  
+  document.getElementById("pokeCard").classList.remove("d-none");
+  document.getElementById("pokedexAll").classList.add("d-none");
 }
-function closePokeCard(){
-  document.getElementById('pokeCard').classList.add('d-none');
-  document.getElementById('pokedexAll').classList.remove('d-none');
+function closePokeCard() {
+  document.getElementById("pokeCard").classList.add("d-none");
+  document.getElementById("pokedexAll").classList.remove("d-none");
 }
 
 function renderPokemonInfo() {
   let pokImg = currentPokemon["sprites"]["other"]["home"]["front_default"];
-  let pokemonName = currentPokemon["name"]; 
-  document.getElementById("pokemonName").innerHTML = capitalizeFirstLetter(pokemonName);
+  let pokemonName = currentPokemon["name"];
+  document.getElementById("pokemonName").innerHTML =
+    capitalizeFirstLetter(pokemonName);
   document.getElementById("pokemonImage").src = pokImg;
   let name = currentPokemon["forms"][0]["name"];
   let pokemonabilities = currentPokemon["abilities"];
