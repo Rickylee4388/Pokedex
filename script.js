@@ -1,6 +1,6 @@
 let currentPokemon;
 let Pokemon = "bulbasaur";
-
+let pokeball = "img/pokeball.png";
 async function loadPokemon() {
   for (let i = 1; i < 152; i++) {
     let number = i;
@@ -12,21 +12,22 @@ async function loadPokemon() {
       currentPokemon["sprites"]["other"]["dream_world"]["front_default"];
     
     let pokType = currentPokemon["types"]["0"]["type"]["name"];
-    
     document.getElementById("pokemonList").innerHTML += /*html*/ `
       <div id="#00${number}" class="pokemonID ${pokType} " onclick='openPokeCard(${i})'>
         <b>${capitalizeFirstLetter(name)}</b>
         <div class="d-flex mt20">        
-          <img src="${pokImg}" alt="">
-          <div id="type" class="type ${pokType}-light">${pokType} </div>
-      
-
+          <img class="pokeimg" src="${pokImg}" alt="">
+          <div>
+            <div id="type" class="type ${pokType}-light">${pokType} 
+            </div>
+          </div>
         </div>
       </div>
-
     `;
+
   }
 }
+
 async function openPokeCard(i) {
   let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
   let response = await fetch(url);

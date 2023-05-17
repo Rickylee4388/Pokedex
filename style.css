@@ -100,25 +100,38 @@ td {
 .d-none {
     display: none;
 }
-
+.inputButtonDiv{
+    display: flex;
+    justify-content: center;
+}
 .pokemonList {
     display: flex;
     flex-wrap: wrap;
     height: 90vh;
+    justify-content: center;
 
 }
 
 .pokemonID {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 140px;
-    width: 200px;
-    background-color: aqua;
     border-radius: 10%;
     border: 1px solid grey;
     margin: 5px;
     padding-top: 20px;
+}
+.pokemonID::before{
+    position: absolute;
+    background-image: url("img/pokeball.png");
+    background-size: 56px ;
+    background-repeat: no-repeat;
+    background-position: bottom 1px right 10px;
+    height: 110px;
+    width: 120px;
+    opacity: 0.1;
+    content:'';
 }
 
 .close {
@@ -131,9 +144,19 @@ td {
     cursor: pointer;
 }
 
-.pokemonID img {
-    height: 100px;
-    width: 100px;
+.pokeimg {
+    z-index: 2;
+    height: 90px;
+    width: 90px;
+    padding: 5px;
+}
+
+.pokeball {
+    opacity: 0.3;
+    z-index: 1;
+    height: 50px;
+    width: 50px;
+
 }
 
 .d-flex {
@@ -142,18 +165,19 @@ td {
 }
 
 .type {
-
     background-color: rgba(187, 255, 253, 0.716);
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     height: 30px;
-    width: 70px;
+    width: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    margin-bottom: 10px;
+    margin-right: 5px;
+    z-index: 2 !important;
 }
 
 .mt10 {
