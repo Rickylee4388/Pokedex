@@ -11,21 +11,22 @@
     <script src="script.js"></script>
   </head>
 
-  <body onload="loadPokemon()">
+  <body onload="loadAllPokemon()">
     <div id="content" class="content">
       <div id="pokedexAll" class="pokedexAll">
         <div id="inputButtonDiv" class="inputButtonDiv">
           <input id="inputPokemon" type="text" />
-          <button onclick="loadPokemon()">Pokemon laden</button>
+          <button onclick="loadAllPokemon()">Pokemon laden</button>
         </div>
 
         <div id="pokemonList" class="pokemonList">
           
         </div>
       </div>
-
+      <div id="pokeCardOpacity" class="pokeCardOpacity d-none" onclick="closePokeCard()"></div>
       <div id="pokeCard" class="pokeCard d-none">
-        <div id="pokeCardInfo" class="pokeCardInfo">
+        
+          <div id="pokeCardInfo" class="pokeCardInfo">
           <div id="arrowHeart" class="arrowHeart">
             <div id="arrow" class="arrow close" onclick="closePokeCard()">
               <svg
@@ -53,22 +54,34 @@
               </svg>
             </div>
           </div>
-          <h1 class="pokemonName" id="pokemonName"></h1>
+          <div class="d-flex center sp-btw">
+            <div>            
+              <h1 class="pokemonName" id="pokemonName"></h1>
+              <div id="pokeCardType" class="pokeCardType"></div>
+            </div>
+
+            <div id="number" class="number"></div>
+          </div>
+         
+         
+
         </div>
         <div class="infoContainer">
           <div id="pokemonImageDiv" class="pokemonImageDiv">
             <img id="pokemonImage" src="" alt="" />
           </div>
           <div id="tabs" class="tabs">
-            <a href="#">About</a>
-            <a href="#">Base Stats</a>
-            <a href="#">Moves</a>
+            <a href="#" onclick="generateAboutTable(currentPokemon)">About</a>
+            <a href="#" onclick="generateBaseStats(currentPokemon)" >Base Stats</a>
+            <a id="moves" href="#" onclick="generateMoves(currentPokemon)">Moves</a>
           </div>
           <div class="aboutDiv">
-            <table id="aboutTable"></table>
+            <table id="aboutTable" class="aboutTable"></table>
           </div>
         </div>
-      </div>
+      
     </div>
+  </div>
+        
   </body>
 </html>

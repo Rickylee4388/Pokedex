@@ -12,11 +12,30 @@ body {
 }
 
 .pokeCard {
+    position: fixed;
     background-color: rgb(255, 0, 0);
     border: 1px solid grey;
     border-radius: 40px;
     min-width: 350px;
     min-height: 90%;
+    z-index: 4;
+}
+
+.pokeCard::before {
+    position: absolute;
+    background-image: url(img/pokeball.png);
+    background-size: 180px;
+    background-repeat: no-repeat;
+    background-position: bottom 1px right 10px;
+    max-height: 90%;
+    max-width: 350px;
+    height: 200px;
+    width: 200px;
+    opacity: 0.1;
+    content: '';
+    z-index: 1;
+    margin-left: 190px;
+    margin-top: 120px;
 }
 
 .pokeCardInfo {
@@ -32,15 +51,43 @@ body {
     font-family: 'Open Sans', sans-serif
 }
 
+.pokeCardType {
+    background-color: rgba(187, 255, 253, 0.716);
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    height: 50px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: px;
+    z-index: 2 !important;
+
+}
+
+.pokeCardOpacity {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.5;
+    z-index: 3;
+}
+
 .infoContainer {
     display: block;
     background-color: white;
     height: 50vh;
-
     border-radius: 40px;
     margin-bottom: 3px;
     margin-left: 3px;
     margin-right: 3px;
+    z-index: 2;
 }
 
 .pokemonImageDiv {
@@ -49,8 +96,9 @@ body {
 }
 
 .pokemonImageDiv img {
-    margin-top: -120px;
-    height: 200px;
+    margin-top: -230px;
+    height: 280px;
+    z-index: 2;
 }
 
 .tabs {
@@ -61,13 +109,28 @@ body {
     margin-left: 40px;
     margin-right: 40px;
 }
-
-.aboutDiv {
-    margin-left: 40px;
+.tabs a{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-size: 18px;
 }
 
+
+
 .tdAbout1 {
-    width: 100px;
+    padding-inline-end: 25px;
+    min-width: 110px;
+}
+
+.tdAbout2 {
+    padding-inline-start: 25px;
+}
+
+.aboutTable {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
 }
 
 tr {
@@ -76,6 +139,18 @@ tr {
 
 td {
     width: 40%;
+}
+
+.moves {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.tableDiv {
+    padding: 5px;
+    height: 21px;
 }
 
 .arrowHeart {
@@ -97,13 +172,22 @@ td {
     fill: white;
 }
 
+.number {
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+
 .d-none {
     display: none;
 }
-.inputButtonDiv{
+
+.inputButtonDiv {
     display: flex;
     justify-content: center;
 }
+
 .pokemonList {
     display: flex;
     flex-wrap: wrap;
@@ -118,20 +202,28 @@ td {
     flex-direction: column;
     align-items: center;
     border-radius: 10%;
-    border: 1px solid grey;
     margin: 5px;
     padding-top: 20px;
+    box-shadow: 5px 3px 3px rgb(86, 85, 85);
+    height: 125px;
 }
-.pokemonID::before{
+
+.pokemonID:hover {
+    transition-timing-function: ease-in-out 125ms;
+    border: 3px solid rgba(132, 131, 131, 0);
+    box-shadow: 5px 3px 3px rgb(86, 85, 85);
+}
+
+.pokemonID::before {
     position: absolute;
     background-image: url("img/pokeball.png");
-    background-size: 56px ;
+    background-size: 90px;
     background-repeat: no-repeat;
     background-position: bottom 1px right 10px;
     height: 110px;
-    width: 120px;
+    width: 144px;
     opacity: 0.1;
-    content:'';
+    content: '';
 }
 
 .close {
@@ -171,18 +263,33 @@ td {
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     height: 30px;
-    width: 60px;
+    width: 54px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
-    margin-right: 5px;
+    margin-left: 5px;
     z-index: 2 !important;
+    font-size: 15px;
 }
 
 .mt10 {
     margin-top: 10px;
 }
+
+.d-flex {
+    display: flex;
+}
+
+.center {
+    align-items: center;
+}
+
+.sp-btw {
+    justify-content: space-between;
+
+}
+
 
 /* Background Color by type */
 .grass {
@@ -265,7 +372,7 @@ td {
     background-color: #c9bfe8;
 }
 
-.fightning {
+.fighting {
     background-color: #C03028;
 }
 
