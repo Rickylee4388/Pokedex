@@ -12,6 +12,8 @@ async function loadAllPokemon() {
     let pokImg = currentPokemon["sprites"]["other"]["dream_world"]["front_default"];
     let pokType = currentPokemon["types"]["0"]["type"]["name"];
     pokemonList(number, pokType, i, name, pokImg);
+    addNumbersmall(number);
+    
   }
 }
 function pokemonList(number, pokType, i, name, pokImg) {
@@ -22,6 +24,7 @@ function pokemonList(number, pokType, i, name, pokImg) {
       <div>
         <div id="type" class="type ${pokType}-light">${pokType} 
         </div>
+        <div id="${number}small" class="numbersmall"></div>
       </div>
       <img class="pokeimg" src="${pokImg}" alt="">
     </div>
@@ -102,6 +105,16 @@ function addNumber(number) {
     return (document.getElementById("number").innerHTML = `#00${number}`);
   }
 }
+function addNumbersmall(number) {
+  if (number >= 10 && number <= 99) {
+    return (document.getElementById(`${number}small`).innerHTML = `#0${number}`);
+  }
+  if (number >= 100) {
+    return (document.getElementById(`${number}small`).innerHTML = `#${number}`);
+  } else {
+    return (document.getElementById(`${number}small`).innerHTML = `#00${number}`);
+  }
+}
 function generateAboutTable(currentPokemon) {
   let pokType = currentPokemon["types"]["0"]["type"]["name"];
   let height = currentPokemon["height"];
@@ -173,4 +186,17 @@ function generateMoves(currentPokemon) {
 }
 function capitalizeFirstLetter(pokemonName) {
   return pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
+}
+async function filterPokemon(){
+  Pokemon = document.getElementById("inputPokemon").value;
+  Pokemon = minimizeFirstLetter(Pokemon);
+  document.getElementById("inputPokemon").value="";
+      let url = `https://pokeapi.co/api/v2/pokemon/${Pokemon}`;
+      let response = await fetch(url);
+      currentPokemon = await response.json();
+      let number = currentPokemon["id"];
+      openPokeCard(number);
+}
+function minimizeFirstLetter(Pokemon) {
+  return Pokemon.charAt(0).toLowerCase() + Pokemon.slice(1);
 }
