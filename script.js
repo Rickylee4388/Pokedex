@@ -34,10 +34,36 @@ async function openPokeCard(i) {
   currentPokemon = await response.json();
   currentPokemonInfo();
   document.getElementById("pokeCard").classList.remove("d-none");
+  document.getElementById("switchCard").classList.remove("d-none");
   document.getElementById("pokeCardOpacity").classList.remove("d-none");
+}
+function previousCard(){
+  let number = currentPokemon["id"];
+  if (number>=2){
+    number--;
+    openPokeCard(number);
+  }
+  else{
+    number = 151;
+    openPokeCard(number);
+  }
+
+}
+function nextCard(){
+  let number = currentPokemon["id"];
+  if (number<=150){
+    number++;
+    openPokeCard(number);
+  }
+  else{
+    number = 1;
+    openPokeCard(number);
+  }
+
 }
 function closePokeCard() {
   document.getElementById("pokeCard").classList.add("d-none");
+  document.getElementById("switchCard").classList.add("d-none");
   document.getElementById("pokeCardOpacity").classList.add("d-none");
 }
 function currentPokemonInfo() {

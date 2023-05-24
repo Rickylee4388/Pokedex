@@ -12,6 +12,12 @@
   </head>
 
   <body onload="loadAllPokemon()">
+    <!-- TODO
+    - Arrow left right open Card
+    - insert number in all pokemon
+    - insert filter function
+    - add big header POKEDEX
+    -->
     <div id="content" class="content">
       <div id="pokedexAll" class="pokedexAll">
         <div id="inputButtonDiv" class="inputButtonDiv">
@@ -19,14 +25,25 @@
           <button onclick="loadAllPokemon()">Pokemon laden</button>
         </div>
 
-        <div id="pokemonList" class="pokemonList">
-          
+        <div id="pokemonList" class="pokemonList"></div>
+      </div>
+      <div id="pokeCardOpacity" class="pokeCardOpacity d-none" onclick="closePokeCard()">
+
+      </div>
+      <div id="switchCard" class="switchCard d-none">        
+        <div id="previous" class="previous" onclick="previousCard()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 50 50">
+            <polygon points="20,25 30,15 30,35" fill="#000000" />
+          </svg>    
+        </div>
+        <div id="next" class="next" onclick="nextCard()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 50 50">
+            <polygon points="30,25 20,15 20,35" fill="#000000" />
+          </svg> 
         </div>
       </div>
-      <div id="pokeCardOpacity" class="pokeCardOpacity d-none" onclick="closePokeCard()"></div>
       <div id="pokeCard" class="pokeCard d-none">
-        
-          <div id="pokeCardInfo" class="pokeCardInfo">
+        <div id="pokeCardInfo" class="pokeCardInfo">
           <div id="arrowHeart" class="arrowHeart">
             <div id="arrow" class="arrow close" onclick="closePokeCard()">
               <svg
@@ -55,16 +72,13 @@
             </div>
           </div>
           <div class="d-flex center sp-btw">
-            <div>            
+            <div>
               <h1 class="pokemonName" id="pokemonName"></h1>
               <div id="pokeCardType" class="pokeCardType"></div>
             </div>
 
             <div id="number" class="number"></div>
           </div>
-         
-         
-
         </div>
         <div class="infoContainer">
           <div id="pokemonImageDiv" class="pokemonImageDiv">
@@ -72,16 +86,18 @@
           </div>
           <div id="tabs" class="tabs">
             <a href="#" onclick="generateAboutTable(currentPokemon)">About</a>
-            <a href="#" onclick="generateBaseStats(currentPokemon)" >Base Stats</a>
-            <a id="moves" href="#" onclick="generateMoves(currentPokemon)">Moves</a>
+            <a href="#" onclick="generateBaseStats(currentPokemon)"
+              >Base Stats</a
+            >
+            <a id="moves" href="#" onclick="generateMoves(currentPokemon)"
+              >Moves</a
+            >
           </div>
           <div class="aboutDiv">
             <table id="aboutTable" class="aboutTable"></table>
           </div>
         </div>
-      
+      </div>
     </div>
-  </div>
-        
   </body>
 </html>

@@ -77,6 +77,35 @@ body {
     bottom: 0;
     opacity: 0.5;
     z-index: 3;
+
+}
+.switchCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.previous{
+    height: 100px;
+    width: 100px;
+    z-index: 999;
+    position: fixed;
+    left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 1;
+}
+.next{
+    height: 100px;
+    width: 100px;
+    z-index: 5;
+    position: fixed;
+    right: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .infoContainer {
