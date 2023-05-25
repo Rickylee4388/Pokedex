@@ -187,7 +187,7 @@ function generateMoves(currentPokemon) {
 function capitalizeFirstLetter(pokemonName) {
   return pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
 }
-async function filterPokemon(){
+async function searchPokemon(){
   Pokemon = document.getElementById("inputPokemon").value;
   Pokemon = minimizeFirstLetter(Pokemon);
   document.getElementById("inputPokemon").value="";
@@ -199,4 +199,26 @@ async function filterPokemon(){
 }
 function minimizeFirstLetter(Pokemon) {
   return Pokemon.charAt(0).toLowerCase() + Pokemon.slice(1);
+}
+async function filterPokemon(j){
+  let type = j;
+  document.getElementById("pokemonList").innerHTML="";
+  if (type === "all"){
+    loadAllPokemon();
+  }
+  else{
+    for (let i = 1; i < 152; i++) {
+    let number = i;
+    let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+    let response = await fetch(url);
+    currentPokemon = await response.json();
+    let name = currentPokemon["forms"][0]["name"];
+    let pokImg = currentPokemon["sprites"]["other"]["dream_world"]["front_default"];
+    let pokType = currentPokemon["types"]["0"]["type"]["name"];
+
+    if (type === pokType){
+    pokemonList(number, pokType, i, name, pokImg);
+    addNumbersmall(number);}
+  }}
+  
 }
