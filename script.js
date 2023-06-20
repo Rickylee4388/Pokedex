@@ -36,6 +36,8 @@ async function openPokeCard(i) {
   let response = await fetch(url);
   currentPokemon = await response.json();
   currentPokemonInfo();
+  
+  document.getElementById("arrowCardDiv").classList.remove("d-none");
   document.getElementById("pokeCard").classList.remove("d-none");
   document.getElementById("switchCard").classList.remove("d-none");
   document.getElementById("pokeCardOpacity").classList.remove("d-none");

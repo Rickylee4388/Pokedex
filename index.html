@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="fonts.css" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Pokedex</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="script.js"></script>
-  </head>
 
-  <body onload="loadAllPokemon()">
-        <!-- TO DO --
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="fonts.css" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Pokedex</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="script.js"></script>
+</head>
+
+<body onload="loadAllPokemon()">
+  <!-- TO DO --
         RESPONSIVE -->
-    <div id="content" class="content">
-      <div id="pokedexAll" class="pokedexAll">
-        <div id="headline" class="headline"><h1>POKEDEX</h1></div>
-        <div id="forms" class="forms">        
+  <div id="content" class="content">
+    <div id="pokedexAll" class="pokedexAll">
+      <div id="headSection" class="headSection">
+        <div id="headline" class="headline">
+          <h1>POKEDEX</h1>
+        </div>
+        <div id="forms" class="forms">
           <form id="inputButtonDiv" class="inputButtonDiv " onsubmit="searchPokemon(); return false">
-            <input id="inputPokemon" class="css-input" type="text" placeholder="Pokemon..." required/>
-            <button class="original-button">search pokemon</button>
+            <input id="inputPokemon" class="css-input" type="text" placeholder="Pokemon..." required />
+            <button class="btn-design">Search Pokemon</button>
           </form>
-          <div class="dropdown ">
-            <button class="btn dropdown-button dropdown-toggle" type="button"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              type
+          <div class="dropdown">
+            <button class="btn-design dropdown-button dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Filter Type
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="#" onclick="filterPokemon('all')">All</a>
@@ -46,88 +52,80 @@
             </div>
           </div>
         </div>
+      </div>
 
-
+      <div class="d-flex center">
         <div id="pokemonList" class="pokemonList"></div>
       </div>
-      <div id="pokeCardOpacity" class="pokeCardOpacity d-none" onclick="closePokeCard()">
-
-      </div>
-
-      <div class="ArrowCardDiv">
-        <div id="switchCard" class="switchCard d-none">        
-          <div id="previous" class="previous" onclick="previousCard()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="250" height="250" viewBox="0 0 50 50">
-              <polygon points="20,25 30,15 30,35" fill="#000000" />
-            </svg>    
-          </div>
-          <div id="next" class="next" onclick="nextCard()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="250" height="250" viewBox="0 0 50 50">
-              <polygon points="30,25 20,15 20,35" fill="#000000" />
-            </svg> 
-          </div>
-        </div>
-        <div id="pokeCard" class="pokeCard d-none">
-          <div id="pokeCardInfo" class="pokeCardInfo">
-            <div id="arrowHeart" class="arrowHeart">
-              <div id="arrow" class="arrow close" onclick="closePokeCard()">
-                <svg
-                  class="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="48"
-                  viewBox="0 96 960 960"
-                  width="48"
-                >
-                  <path
-                    d="M338 792 141 596q-5-5-7-10t-2-11q0-6 2-11t7-10l197-197q8-8 21-8.5t22 8.5q9 9 9 21.5t-9 21.5L236 545h574q13 0 21.5 8.5T840 575q0 13-8.5 21.5T810 605H236l145 145q8 8 8.5 20.5T381 792q-9 9-21.5 9t-21.5-9Z"
-                  />
-                </svg>
-              </div>
-              <div id="heart" class="heart">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="48"
-                  viewBox="0 96 960 960"
-                  width="48"
-                >
-                  <path
-                    d="m480 935-41-37q-105.768-97.121-174.884-167.561Q195 660 154 604.5T96.5 504Q80 459 80 413q0-90.155 60.5-150.577Q201 202 290 202q57 0 105.5 27t84.5 78q42-54 89-79.5T670 202q89 0 149.5 60.423Q880 322.845 880 413q0 46-16.5 91T806 604.5Q765 660 695.884 730.439 626.768 800.879 521 898l-41 37Zm0-79q101.236-92.995 166.618-159.498Q712 630 750.5 580t54-89.135q15.5-39.136 15.5-77.72Q820 347 778 304.5T670.225 262q-51.524 0-95.375 31.5Q531 325 504 382h-49q-26-56-69.85-88-43.851-32-95.375-32Q224 262 182 304.5t-42 108.816Q140 452 155.5 491.5t54 90Q248 632 314 698t166 158Zm0-297Z"
-                  />
-                </svg>
-              </div>
-            </div>
-            <div class="d-flex center sp-btw">
-              <div>
-                <h1 class="pokemonName" id="pokemonName"></h1>
-                <div id="pokeCardType" class="pokeCardType"></div>
-              </div>
-  
-              <div id="number" class="number"></div>
-            </div>
-          </div>
-          <div class="infoContainer">
-            <div id="pokemonImageDiv" class="pokemonImageDiv">
-              <img id="pokemonImage" src="" alt="" />
-            </div>
-            <div id="tabs" class="tabs">
-              <a href="#" onclick="generateAboutTable(currentPokemon)">About</a>
-              <a href="#" onclick="generateBaseStats(currentPokemon)"
-                >Base Stats</a
-              >
-              <a id="moves" href="#" onclick="generateMoves(currentPokemon)"
-                >Moves</a
-              >
-            </div>
-            <div class="aboutDiv">
-              <table id="aboutTable" class="aboutTable"></table>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
+    <div id="pokeCardOpacity" class="pokeCardOpacity d-none" onclick="closePokeCard()">
 
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+
+    <div id="arrowCardDiv" class="ArrowCardDiv d-none">
+      <div id="switchCard" class="switchCard d-none">
+        <div id="previous" class="previous" onclick="previousCard()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="250" height="250" viewBox="0 0 50 50">
+            <polygon points="20,25 30,15 30,35" fill="#000000" />
+          </svg>
+        </div>
+        <div id="next" class="next" onclick="nextCard()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="250" height="250" viewBox="0 0 50 50">
+            <polygon points="30,25 20,15 20,35" fill="#000000" />
+          </svg>
+        </div>
+      </div>
+      <div id="pokeCard" class="pokeCard d-none">
+        <div id="pokeCardInfo" class="pokeCardInfo">
+          <div id="arrowHeart" class="arrowHeart">
+            <div id="arrow" class="arrow close" onclick="closePokeCard()">
+              <svg class="img" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                <path
+                  d="M338 792 141 596q-5-5-7-10t-2-11q0-6 2-11t7-10l197-197q8-8 21-8.5t22 8.5q9 9 9 21.5t-9 21.5L236 545h574q13 0 21.5 8.5T840 575q0 13-8.5 21.5T810 605H236l145 145q8 8 8.5 20.5T381 792q-9 9-21.5 9t-21.5-9Z" />
+              </svg>
+            </div>
+            <div id="heart" class="heart">
+              <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48">
+                <path
+                  d="m480 935-41-37q-105.768-97.121-174.884-167.561Q195 660 154 604.5T96.5 504Q80 459 80 413q0-90.155 60.5-150.577Q201 202 290 202q57 0 105.5 27t84.5 78q42-54 89-79.5T670 202q89 0 149.5 60.423Q880 322.845 880 413q0 46-16.5 91T806 604.5Q765 660 695.884 730.439 626.768 800.879 521 898l-41 37Zm0-79q101.236-92.995 166.618-159.498Q712 630 750.5 580t54-89.135q15.5-39.136 15.5-77.72Q820 347 778 304.5T670.225 262q-51.524 0-95.375 31.5Q531 325 504 382h-49q-26-56-69.85-88-43.851-32-95.375-32Q224 262 182 304.5t-42 108.816Q140 452 155.5 491.5t54 90Q248 632 314 698t166 158Zm0-297Z" />
+              </svg>
+            </div>
+          </div>
+          <div class="d-flex center sp-btw">
+            <div>
+              <h1 class="pokemonName" id="pokemonName"></h1>
+              <div id="pokeCardType" class="pokeCardType"></div>
+            </div>
+
+            <div id="number" class="number"></div>
+          </div>
+        </div>
+        <div class="infoContainer">
+          <div id="pokemonImageDiv" class="pokemonImageDiv">
+            <img id="pokemonImage" src="" alt="" />
+          </div>
+          <div id="tabs" class="tabs">
+            <a href="#" onclick="generateAboutTable(currentPokemon)">About</a>
+            <a href="#" onclick="generateBaseStats(currentPokemon)">Base Stats</a>
+            <a id="moves" href="#" onclick="generateMoves(currentPokemon)">Moves</a>
+          </div>
+          <div class="aboutDiv">
+            <table id="aboutTable" class="aboutTable"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
