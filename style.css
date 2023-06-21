@@ -1,15 +1,37 @@
 body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
-    background-color: rgba(255, 0, 0, 0.878) !important;
+    background-color: #ffc3c982!important;
 }
+
 
 body::-webkit-scrollbar{
     display: none;
   }
 
+  .d-none {
+    display: none;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.center {
+    align-items: center;
+}
+.column{
+    flex-direction: column;
+}
+
 .headline {
-    height: 150px;
+    height: 110px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,14 +39,14 @@ body::-webkit-scrollbar{
 
 .headline h1 {
     min-width: 360px;
-    background-color: #57ffff;
+    background-color: #b6ffff;
     font-size: 50px;
     width: 50%;
-    border: 1px solid blue;
+    border: 1px solid rgb(83, 83, 244);
     border-radius: 15px;
     margin-top: 50px;
     text-align: center;
-    color: #F08030;
+    color: #ffda37;
     text-shadow: rgb(55, 66, 247) 3px 0px 0px, rgb(55, 66, 247) 2.83487px 0.981584px 0px, rgb(55, 66, 247) 2.35766px 1.85511px 0px, rgb(55, 66, 247) 1.62091px 2.52441px 0px, rgb(55, 66, 247) 0.705713px 2.91581px 0px, rgb(55, 66, 247) -0.287171px 2.98622px 0px, rgb(55, 66, 247) -1.24844px 2.72789px 0px, rgb(55, 66, 247) -2.07227px 2.16926px 0px, rgb(55, 66, 247) -2.66798px 1.37182px 0px, rgb(55, 66, 247) -2.96998px 0.42336px 0px, rgb(55, 66, 247) -2.94502px -0.571704px 0px, rgb(55, 66, 247) -2.59586px -1.50383px 0px, rgb(55, 66, 247) -1.96093px -2.27041px 0px, rgb(55, 66, 247) -1.11013px -2.78704px 0px, rgb(55, 66, 247) -0.137119px -2.99686px 0px, rgb(55, 66, 247) 0.850987px -2.87677px 0px, rgb(55, 66, 247) 1.74541px -2.43999px 0px, rgb(55, 66, 247) 2.44769px -1.73459px 0px, rgb(55, 66, 247) 2.88051px -0.838247px 0px;
 }
 
@@ -95,18 +117,6 @@ body::-webkit-scrollbar{
     margin-bottom: 10px;
     margin-left: px;
     z-index: 2 !important;
-
-}
-
-.pokeCardOpacity {
-    background-color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.5;
-    z-index: 3;
 
 }
 
@@ -259,16 +269,14 @@ td {
     margin-right: 10px;
 }
 
-.d-none {
-    display: none;
-}
+
 
 .headSection {
     display: block;
     position: sticky;
     top: 0;
     z-index: 3;
-    background-color: rgb(255, 0, 0) ;
+    background-color: rgb(255 74 74);
     box-shadow: 5px 1px 6px rgb(86, 85, 85);
     padding-bottom: 1px;
     margin-bottom: 11px;
@@ -320,7 +328,7 @@ td {
     margin: 5px;
     padding-top: 20px;
     box-shadow: 5px 3px 3px rgb(86, 85, 85);
-    height: 125px;
+    height: 140px;
     width: 160px;
 }
 
@@ -336,8 +344,8 @@ td {
     background-size: 90px;
     background-repeat: no-repeat;
     background-position: bottom 1px right 10px;
-    height: 110px;
-    width: 144px;
+    height: 90px;
+    width: 167px;
     opacity: 0.1;
     content: '';
 }
@@ -367,10 +375,7 @@ td {
 
 }
 
-.d-flex {
-    display: flex;
-    justify-content: space-evenly;
-}
+
 
 .type {
     background-color: rgba(187, 255, 253, 0.716);
@@ -389,17 +394,7 @@ td {
     font-size: 15px;
 }
 
-.mt10 {
-    margin-top: 10px;
-}
 
-.d-flex {
-    display: flex;
-}
-
-.center {
-    align-items: center;
-}
 
 .sp-btw {
     justify-content: space-between;
@@ -430,7 +425,7 @@ td {
     border: 1px solid transparent;
     margin-left: 20px;
     cursor: pointer;
-    background-color: #57ffff;
+    background-color: #88efef;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -456,7 +451,7 @@ td {
 
 .btn-design {
     cursor: pointer;
-    background-color: #57ffff;
+    background-color: #b6ffff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -467,11 +462,38 @@ td {
     transition: 0.3s;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
 }
-
+.loadBtn{
+    margin: 20px
+}
 .pokemonName {
     margin-top: 30px;
 }
 
+.errormessage{
+    /* animation: fade 1.2s ease-in-out; */
+    text-align: center;
+    height: 25px;
+    font-weight: 500;
+    position: fixed;
+    top: 165px;
+    z-index: 9;
+    left: 30%;
+    right: 30%;
+}
+
+@keyframes fade {
+    0% {
+        z-index: 9;
+    }
+
+    99% {
+        z-index: 9;
+    }
+
+    100% {
+        z-index: -1;
+    }
+}
 /* Background Color by type */
 .grass {
     background-color: #58ebc1;
@@ -625,6 +647,12 @@ td {
 /* Responsive Design */
 
 @media (max-width: 700px) {
+    .errormessage{
+        top: 175px;
+        left: 10%;
+        right: 10%;
+        font-size: 14;
+    }
     .pokeCardInfo {
 
         padding-left: 20px;
@@ -642,6 +670,7 @@ td {
     .headline {
         min-width: 70%;
         height: 110px;
+        margin-bottom: 0;
     }
 
     .headline h1 {

@@ -1,9 +1,11 @@
 let currentPokemon;
 let Pokemon = "bulbasaur";
 let pokeball = "img/pokeball.png";
+let amountOfPokemon = 152;
 
 async function loadAllPokemon() {
-  for (let i = 1; i < 152; i++) {
+  document.getElementById("pokemonList").innerHTML = '';
+  for (let i = 1; i < amountOfPokemon; i++) {
     let number = i;
     let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     let response = await fetch(url);
@@ -17,19 +19,7 @@ async function loadAllPokemon() {
   }
 }
 function pokemonList(number, pokType, i, name, pokImg) {
-  return (document.getElementById("pokemonList").innerHTML += /*html*/ `
-  <div id="#00${number}" class="pokemonID ${pokType} " onclick='openPokeCard(${i})'>
-    <b>${capitalizeFirstLetter(name)}</b>
-    <div class="d-flex mt20">        
-      <div>
-        <div id="type" class="type ${pokType}-light">${pokType} 
-        </div>
-        <div id="${number}small" class="numbersmall"></div>
-      </div>
-      <img class="pokeimg" src="${pokImg}" alt="">
-    </div>
-  </div>
-`);
+  document.getElementById("pokemonList").innerHTML += generatePokemonListHtml(number, pokType, i, name, pokImg);
 }
 async function openPokeCard(i) {
   let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
@@ -39,8 +29,6 @@ async function openPokeCard(i) {
   
   document.getElementById("arrowCardDiv").classList.remove("d-none");
   document.getElementById("pokeCard").classList.remove("d-none");
-  document.getElementById("switchCard").classList.remove("d-none");
-  document.getElementById("pokeCardOpacity").classList.remove("d-none");
 }
 function previousCard(){
   let number = currentPokemon["id"];
@@ -195,9 +183,19 @@ async function searchPokemon(){
   document.getElementById("inputPokemon").value="";
       let url = `https://pokeapi.co/api/v2/pokemon/${Pokemon}`;
       let response = await fetch(url);
+
+      if (response['status'] == '404'){
+        document.getElementById("errormessage").classList.remove("d-none");
+        setTimeout(function () {
+          document.getElementById("errormessage").classList.add("d-none");
+      }, 2000);
+        
+      }
+      else{
       currentPokemon = await response.json();
       let number = currentPokemon["id"];
       openPokeCard(number);
+    }
 }
 function minimizeFirstLetter(Pokemon) {
   return Pokemon.charAt(0).toLowerCase() + Pokemon.slice(1);
@@ -209,7 +207,7 @@ async function filterPokemon(j){
     loadAllPokemon();
   }
   else{
-    for (let i = 1; i < 152; i++) {
+    for (let i = 1; i < amountOfPokemon; i++) {
     let number = i;
     let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     let response = await fetch(url);
@@ -223,4 +221,28 @@ async function filterPokemon(j){
     addNumbersmall(number);}
   }}
   
+}
+
+function loadMorePokemon(){
+  amountOfPokemon = amountOfPokemon + 20;
+  loadAllPokemon(amountOfPokemon);
+}
+
+
+// HTML TEMPLATE
+
+function generatePokemonListHtml(number, pokType, i, name, pokImg){
+  return /*html*/ `
+  <div id="#00${number}" class="pokemonID ${pokType} " onclick='openPokeCard(${i})'>
+    <b>${capitalizeFirstLetter(name)}</b>
+    <div class="d-flex mt20">        
+      <div>
+        <div id="type" class="type ${pokType}-light">${pokType} 
+        </div>
+        <div id="${number}small" class="numbersmall"></div>
+      </div>
+      <img class="pokeimg" src="${pokImg}" alt="">
+    </div>
+  </div>
+`
 }
