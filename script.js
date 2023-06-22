@@ -18,18 +18,24 @@ async function loadAllPokemon() {
     
   }
 }
+
+
 function pokemonList(number, pokType, i, name, pokImg) {
   document.getElementById("pokemonList").innerHTML += generatePokemonListHtml(number, pokType, i, name, pokImg);
 }
+
+
 async function openPokeCard(i) {
   let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
   let response = await fetch(url);
   currentPokemon = await response.json();
   currentPokemonInfo();
-  
+  document.getElementById("pokeCardOpacity").classList.remove("d-none");
   document.getElementById("arrowCardDiv").classList.remove("d-none");
-  document.getElementById("pokeCard").classList.remove("d-none");
+  
 }
+
+
 function previousCard(){
   let number = currentPokemon["id"];
   if (number>=2){
@@ -42,6 +48,8 @@ function previousCard(){
   }
 
 }
+
+
 function nextCard(){
   let number = currentPokemon["id"];
   if (number<=150){
@@ -54,11 +62,14 @@ function nextCard(){
   }
 
 }
+
+
 function closePokeCard() {
-  document.getElementById("pokeCard").classList.add("d-none");
-  document.getElementById("switchCard").classList.add("d-none");
+  document.getElementById("arrowCardDiv").classList.add("d-none");
   document.getElementById("pokeCardOpacity").classList.add("d-none");
 }
+
+
 function currentPokemonInfo() {
   let pokImg = currentPokemon["sprites"]["other"]["home"]["front_default"];
   let pokemonName = currentPokemon["name"];
@@ -71,20 +82,23 @@ function currentPokemonInfo() {
   console.log("Pokemon is", name);
   generateAboutTable(currentPokemon);
 }
+
+
 function generatePokeCardInformation(pokemonName, pokType, pokImg) {
-  document.getElementById("pokemonName").innerHTML =
-    capitalizeFirstLetter(pokemonName);
+  document.getElementById("pokemonName").innerHTML = capitalizeFirstLetter(pokemonName);
   document.getElementById("pokeCardType").innerHTML = `${pokType}`;
   document.getElementById("pokemonImage").src = pokImg;
 }
+
+
 function generateCardBG(pokType) {
   document.getElementById("pokeCard").className = "";
   document.getElementById("pokeCard").classList.add("pokeCard", `${pokType}`);
   document.getElementById("pokeCardType").className = "";
-  document
-    .getElementById("pokeCardType")
-    .classList.add("pokeCardType", `${pokType}-light`);
+  document.getElementById("pokeCardType").classList.add("pokeCardType", `${pokType}-light`);
 }
+
+
 function addNumber(number) {
   if (number >= 10 && number <= 99) {
     return (document.getElementById("number").innerHTML = `#0${number}`);
@@ -95,6 +109,8 @@ function addNumber(number) {
     return (document.getElementById("number").innerHTML = `#00${number}`);
   }
 }
+
+
 function addNumbersmall(number) {
   if (number >= 10 && number <= 99) {
     return (document.getElementById(`${number}small`).innerHTML = `#0${number}`);
@@ -105,6 +121,8 @@ function addNumbersmall(number) {
     return (document.getElementById(`${number}small`).innerHTML = `#00${number}`);
   }
 }
+
+
 function generateAboutTable(currentPokemon) {
   let pokType = currentPokemon["types"]["0"]["type"]["name"];
   let height = currentPokemon["height"];
@@ -112,28 +130,10 @@ function generateAboutTable(currentPokemon) {
   let pokemonabilities = currentPokemon["abilities"][0]["ability"]["name"];
   document.getElementById("aboutTable").innerHTML = ``;
   document.getElementById("aboutTable").classList.remove("moves");
-  document.getElementById("aboutTable").innerHTML += /*html*/ `
-            <tr>
-                <td class="tdAbout1">Type</td>
-                <td class="tdAbout2" id="species">${pokType}</td>
-            </tr>
-            <tr>
-                <td class="tdAbout1">Height</td>
-                <td class="tdAbout2" id="height">${height} ft</td>
-            </tr>
-            <tr>
-                <td class="tdAbout1">Weight</td>
-                <td class="tdAbout2" id="weight">${weight} lb</td>
-            </tr>
-            <tr>
-                <td class="tdAbout1">Abilities</td>
-                <td class="tdAbout2" id="abilities">
-                    ${pokemonabilities}<br>
-                    
-                </td>
-            </tr>
-    `;
+  document.getElementById("aboutTable").innerHTML += generateAboutTableHtml(pokType,height,weight,pokemonabilities);
 }
+
+
 function generateBaseStats(currentPokemon) {
   let hp = currentPokemon["stats"]["0"]["base_stat"];
   let attack = currentPokemon["stats"]["1"]["base_stat"];
@@ -141,25 +141,10 @@ function generateBaseStats(currentPokemon) {
   let specialAttack = currentPokemon["stats"]["3"]["base_stat"];
   document.getElementById("aboutTable").innerHTML = ``;
   document.getElementById("aboutTable").classList.remove("moves");
-  document.getElementById("aboutTable").innerHTML += /*html*/ `
-            <tr>
-                <td class="tdAbout1">Hp</td>
-                <td class="tdAbout2" id="species">${hp}</td>
-            </tr>
-            <tr>
-                <td class="tdAbout1">Attack</td>
-                <td class="tdAbout2" id="height">${attack} </td>
-            </tr>
-            <tr>
-                <td class="tdAbout1">Defense</td>
-                <td class="tdAbout2" id="weight">${defense} </td>
-            </tr>
-            <tr>
-                <td class="tdAbout1">Special attack</td>
-                <td class="tdAbout2" id="abilities">${specialAttack}<br></td>
-            </tr>
-    `;
+  document.getElementById("aboutTable").innerHTML += generateBaseStatsHtml(hp,attack,defense,specialAttack);
 }
+
+
 function generateMoves(currentPokemon) {
   let move1 = currentPokemon["moves"]["0"]["move"]["name"];
   let move2 = currentPokemon["moves"]["1"]["move"]["name"];
@@ -167,16 +152,14 @@ function generateMoves(currentPokemon) {
   let move4 = currentPokemon["moves"]["3"]["move"]["name"];
   document.getElementById("aboutTable").innerHTML = ``;
   document.getElementById("aboutTable").classList.add("moves");
-  document.getElementById("aboutTable").innerHTML = /*html*/ `
-  <div class="tableDiv">${capitalizeFirstLetter(move1)}</div>
-  <div class="tableDiv">${capitalizeFirstLetter(move2)}</div>
-  <div class="tableDiv">${capitalizeFirstLetter(move3)}</div>
-  <div class="tableDiv">${capitalizeFirstLetter(move4)}</div>
-  `;
+  document.getElementById("aboutTable").innerHTML = generateMovesHtml(move1,move2,move3,move4);
 }
+
 function capitalizeFirstLetter(pokemonName) {
   return pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
 }
+
+
 async function searchPokemon(){
   Pokemon = document.getElementById("inputPokemon").value;
   Pokemon = minimizeFirstLetter(Pokemon);
@@ -197,9 +180,13 @@ async function searchPokemon(){
       openPokeCard(number);
     }
 }
+
+
 function minimizeFirstLetter(Pokemon) {
   return Pokemon.charAt(0).toLowerCase() + Pokemon.slice(1);
 }
+
+
 async function filterPokemon(j){
   let type = j;
   document.getElementById("pokemonList").innerHTML="";
@@ -223,11 +210,26 @@ async function filterPokemon(j){
   
 }
 
+
 function loadMorePokemon(){
   amountOfPokemon = amountOfPokemon + 20;
   loadAllPokemon(amountOfPokemon);
 }
 
+
+function toggleHeart(){
+  let heart = document.getElementById('heartsvg');
+  let scource = heart.src;
+  let red = "./img/heart-red.svg";
+  let white = "./img/heart.svg";
+
+  if (scource.includes("red")){
+    heart.src = white;
+  }
+  else{
+    heart.src = red;
+  }
+}
 
 // HTML TEMPLATE
 
@@ -245,4 +247,61 @@ function generatePokemonListHtml(number, pokType, i, name, pokImg){
     </div>
   </div>
 `
+}
+
+
+function generateAboutTableHtml(pokType,height,weight,pokemonabilities){
+  return /*html*/ `
+  <tr>
+      <td class="tdAbout1">Type</td>
+      <td class="tdAbout2" id="species">${pokType}</td>
+  </tr>
+  <tr>
+      <td class="tdAbout1">Height</td>
+      <td class="tdAbout2" id="height">${height} ft</td>
+  </tr>
+  <tr>
+      <td class="tdAbout1">Weight</td>
+      <td class="tdAbout2" id="weight">${weight} lb</td>
+  </tr>
+  <tr>
+      <td class="tdAbout1">Abilities</td>
+      <td class="tdAbout2" id="abilities">
+          ${pokemonabilities}<br>
+          
+      </td>
+  </tr>
+`;
+}
+
+
+function generateBaseStatsHtml(hp,attack,defense,specialAttack){
+  return /*html*/ `
+  <tr>
+      <td class="tdAbout1">Hp</td>
+      <td class="tdAbout2" id="species">${hp}</td>
+  </tr>
+  <tr>
+      <td class="tdAbout1">Attack</td>
+      <td class="tdAbout2" id="height">${attack} </td>
+  </tr>
+  <tr>
+      <td class="tdAbout1">Defense</td>
+      <td class="tdAbout2" id="weight">${defense} </td>
+  </tr>
+  <tr>
+      <td class="tdAbout1">Special attack</td>
+      <td class="tdAbout2" id="abilities">${specialAttack}<br></td>
+  </tr>
+  `;
+}
+
+
+function generateMovesHtml(move1,move2,move3,move4){
+  return /*html*/ `
+<div class="tableDiv">${capitalizeFirstLetter(move1)}</div>
+<div class="tableDiv">${capitalizeFirstLetter(move2)}</div>
+<div class="tableDiv">${capitalizeFirstLetter(move3)}</div>
+<div class="tableDiv">${capitalizeFirstLetter(move4)}</div>
+`;
 }
