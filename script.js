@@ -2,6 +2,7 @@ let currentPokemon;
 let Pokemon = "bulbasaur";
 let pokeball = "img/pokeball.png";
 let amountOfPokemon = 152;
+let favorites =['0'];
 
 async function loadAllPokemon() {
   document.getElementById("pokemonList").innerHTML = '';
@@ -14,8 +15,7 @@ async function loadAllPokemon() {
     let pokImg = currentPokemon["sprites"]["other"]["dream_world"]["front_default"];
     let pokType = currentPokemon["types"]["0"]["type"]["name"];
     pokemonList(number, pokType, i, name, pokImg);
-    addNumbersmall(number);
-    
+    addNumberSmall(number);
   }
 }
 
@@ -32,7 +32,62 @@ async function openPokeCard(i) {
   currentPokemonInfo();
   document.getElementById("pokeCardOpacity").classList.remove("d-none");
   document.getElementById("arrowCardDiv").classList.remove("d-none");
+  let favNumber = document.getElementById('number').innerText;
+  checkLocalStorage();
+  generateHeartColour(favNumber);
   
+
+}
+
+function checkLocalStorage(){
+  if (localStorage.getItem("favoriteNumber") === null) {
+    favorites =['0'];
+  }
+  else{
+    favorites = JSON.parse(localStorage.getItem('favoriteNumber'));
+  }
+}
+
+function   generateHeartColour(favNumber){  
+  if(favorites.includes(favNumber)){
+  let red = "./img/heart-red.svg";
+  let heart = document.getElementById('heartsvg');
+  heart.src = red;
+}
+else{
+  let white = "./img/heart.svg";
+  let heart = document.getElementById('heartsvg');
+  heart.src = white;
+}
+}
+
+
+function toggleHeart(){
+  let heart = document.getElementById('heartsvg');
+  let scource = heart.src;
+  let red = "./img/heart-red.svg";
+  let white = "./img/heart.svg";
+  let currentNumber = document.getElementById('number').innerText;
+  let favNumber = document.getElementById('number').innerText;
+
+  if (favorites.includes(currentNumber)){
+    let index = favorites.indexOf(favNumber);
+    favorites.splice(index, 1);
+    heart.src = white;
+    saveToLocalStorage(favorites);
+  }
+  else{
+    favorites.push(favNumber);
+    heart.src = red;
+    saveToLocalStorage(favorites);
+  }
+}
+
+
+function saveToLocalStorage(favorites){
+  localStorage.setItem('favoriteNumber', JSON.stringify(favorites));
+  favorites = JSON.parse(localStorage.getItem('favoriteNumber'));
+
 }
 
 
@@ -111,7 +166,7 @@ function addNumber(number) {
 }
 
 
-function addNumbersmall(number) {
+function addNumberSmall(number) {
   if (number >= 10 && number <= 99) {
     return (document.getElementById(`${number}small`).innerHTML = `#0${number}`);
   }
@@ -205,7 +260,7 @@ async function filterPokemon(j){
 
     if (type === pokType){
     pokemonList(number, pokType, i, name, pokImg);
-    addNumbersmall(number);}
+    addNumberSmall(number);}
   }}
   
 }
@@ -217,19 +272,9 @@ function loadMorePokemon(){
 }
 
 
-function toggleHeart(){
-  let heart = document.getElementById('heartsvg');
-  let scource = heart.src;
-  let red = "./img/heart-red.svg";
-  let white = "./img/heart.svg";
 
-  if (scource.includes("red")){
-    heart.src = white;
-  }
-  else{
-    heart.src = red;
-  }
-}
+
+
 
 // HTML TEMPLATE
 
